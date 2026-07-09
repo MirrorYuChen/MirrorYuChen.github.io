@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mirroryuchen.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Ubuntu20.04上软件安装笔记，包含：OpenCV，Pangolin，G2O，cloc，hiredis，redis及mysql等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu20.04上软件安装笔记">
+<meta property="og:url" content="http://mirroryuchen.github.io/2026/01/26/Ubuntu20-04%E4%B8%8A%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="小小宇宙镜">
+<meta property="og:description" content="Ubuntu20.04上软件安装笔记，包含：OpenCV，Pangolin，G2O，cloc，hiredis，redis及mysql等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-26T03:46:42.000Z">
+<meta property="article:modified_time" content="2026-07-09T03:08:22.423Z">
+<meta property="article:author" content="MirrorYuChen">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="OpenCV">
+<meta property="article:tag" content="Pangolin">
+<meta property="article:tag" content="G2O">
+<meta property="article:tag" content="cloc">
+<meta property="article:tag" content="hiredis">
+<meta property="article:tag" content="redis">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://mirroryuchen.github.io/2026/01/26/Ubuntu20-04%E4%B8%8A%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://mirroryuchen.github.io/2026/01/26/Ubuntu20-04%E4%B8%8A%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/","path":"2026/01/26/Ubuntu20-04上软件安装笔记/","title":"Ubuntu20.04上软件安装笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Ubuntu20.04上软件安装笔记 | 小小宇宙镜</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小小宇宙镜</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">"怕什么真理无穷，进一寸有一寸的欢喜。"——胡适谈求知</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-opencv"><span class="nav-text">1.opencv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-pangolin"><span class="nav-text">2.pangolin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-g2o"><span class="nav-text">3.g2o</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-cloc"><span class="nav-text">4.cloc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-hiredis"><span class="nav-text">5.hiredis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-redis"><span class="nav-text">6.redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-redis%E5%AE%89%E8%A3%85"><span class="nav-text">6.1 redis安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-redis%E9%85%8D%E7%BD%AE"><span class="nav-text">6.2 redis配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-redis%E4%BD%BF%E7%94%A8"><span class="nav-text">6.3 redis使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-redis-cluster%E9%85%8D%E7%BD%AE"><span class="nav-text">6.4 redis-cluster配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-mysql"><span class="nav-text">7.mysql</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MirrorYuChen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/MirrorYuChen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;MirrorYuChen" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2458006366@qq.com" title="E-Mail → 2458006366@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mirroryuchen.github.io/2026/01/26/Ubuntu20-04%E4%B8%8A%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MirrorYuChen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小宇宙镜">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Ubuntu20.04上软件安装笔记 | 小小宇宙镜">
+      <meta itemprop="description" content="Ubuntu20.04上软件安装笔记，包含：OpenCV，Pangolin，G2O，cloc，hiredis，redis及mysql等。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ubuntu20.04上软件安装笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-01-26 11:46:42" itemprop="dateCreated datePublished" datetime="2026-01-26T11:46:42+08:00">2026-01-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-09 11:08:22" itemprop="dateModified" datetime="2026-07-09T11:08:22+08:00">2026-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">Ubuntu20.04上软件安装笔记，包含：OpenCV，Pangolin，G2O，cloc，hiredis，redis及mysql等。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="1-opencv"><a href="#1-opencv" class="headerlink" title="1.opencv"></a>1.opencv</h2><ul>
+<li>（1）安装依赖</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; apt install -y libgtk-3-dev ffmpeg libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libavresample-dev libtbb-dev libopenblas-dev libatlas-base-dev liblapack-dev</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（2）源码安装：默认根目录在<code>/root/software</code>下</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.下载源码</span></span><br><span class="line">&gt;&gt; wget https://github.com/opencv/opencv/archive/refs/tags/3.4.20.zip</span><br><span class="line"><span class="comment"># 2.解压源码</span></span><br><span class="line">&gt;&gt; unzip 3.4.20.zip</span><br><span class="line"><span class="comment"># 3.重命名</span></span><br><span class="line">&gt;&gt; <span class="built_in">mv</span> opencv-3.4.20 opencv</span><br><span class="line"><span class="comment"># 4.下载contrib模块</span></span><br><span class="line">&gt;&gt; wget https://github.com/opencv/opencv_contrib/archive/refs/tags/3.4.20.zip</span><br><span class="line">&gt;&gt; unzip 3.4.20.zip &amp;&amp; <span class="built_in">mv</span> opencv_contrib-3.4.20 opencv_contrib</span><br><span class="line"><span class="comment"># 5.编译</span></span><br><span class="line">&gt;&gt; <span class="built_in">cd</span> opencv &amp;&amp; <span class="built_in">mkdir</span> build</span><br><span class="line">&gt;&gt; cmake \</span><br><span class="line">    -DCMAKE_BUILD_TYPE=Release \</span><br><span class="line">    -DCMAKE_INSTALL_PREFIX=/usr/local \</span><br><span class="line">    -DBUILD_DOCS=OFF \</span><br><span class="line">    -DBUILD_EXAMPLES=OFF \</span><br><span class="line">    -DBUILD_JASPER=OFF \</span><br><span class="line">    -DBUILD_OPENEXR=OFF \</span><br><span class="line">    -DBUILD_PERF_TESTS=OFF \</span><br><span class="line">    -DBUILD_TESTS=OFF \</span><br><span class="line">    -DBUILD_PROTOBUF=OFF \</span><br><span class="line">    -DBUILD_opencv_apps=OFF \</span><br><span class="line">    -DBUILD_opencv_dnn=OFF \</span><br><span class="line">    -DBUILD_opencv_ml=OFF \</span><br><span class="line">    -DBUILD_opencv_python_bindings_generator=OFF \</span><br><span class="line">    -DENABLE_CXX11=ON \</span><br><span class="line">    -DENABLE_FAST_MATH=ON \</span><br><span class="line">    -DWITH_EIGEN=ON \</span><br><span class="line">    -DWITH_FFMPEG=ON \</span><br><span class="line">    -DWITH_TBB=ON \</span><br><span class="line">    -DWITH_OPENMP=ON \</span><br><span class="line">    -DOPENCV_EXTRA_MODULES_PATH=/root/software/opencv_contrib/modules \</span><br><span class="line">    ..</span><br><span class="line">&gt;&gt; make -j 18 &amp;&amp; make install</span><br><span class="line"><span class="comment"># 6.添加环境变量</span></span><br><span class="line">&gt;&gt; vim /etc/ld.so.conf.d/opencv.conf</span><br><span class="line">/usr/local/lib</span><br><span class="line"><span class="comment"># 7.更新系统动态库链接缓存</span></span><br><span class="line">&gt;&gt; ldconfig</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-pangolin"><a href="#2-pangolin" class="headerlink" title="2.pangolin"></a>2.pangolin</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.安装依赖项</span></span><br><span class="line">&gt;&gt; apt install -y libglew-dev</span><br><span class="line"><span class="comment"># 2.下载源码</span></span><br><span class="line">&gt;&gt; git <span class="built_in">clone</span> https://github.com/stevenlovegrove/Pangolin.git &amp;&amp; <span class="built_in">cd</span> Pangolin &amp;&amp; git checkout eab3d3449a33a042b1ee7225e1b8b593b1b21e3e</span><br><span class="line"><span class="comment"># 3.编译安装</span></span><br><span class="line">&gt;&gt; <span class="built_in">mkdir</span> build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">&gt;&gt; cmake \</span><br><span class="line">    -DCMAKE_BUILD_TYPE=Release \</span><br><span class="line">    -DCMAKE_INSTALL_PREFIX=/usr/local \</span><br><span class="line">    -DBUILD_EXAMPLES=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_DEPTHSENSE=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_FFMPEG=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_LIBDC1394=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_LIBJPEG=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_LIBOPENEXR=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_LIBPNG=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_LIBTIFF=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_LIBUVC=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_LZ4=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_OPENNI=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_OPENNI2=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_PLEORA=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_PYTHON=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_TELICAM=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_UVC_MEDIAFOUNDATION=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_V4L=OFF \</span><br><span class="line">    -DBUILD_PANGOLIN_ZSTD=OFF \</span><br><span class="line">    ..</span><br><span class="line">&gt;&gt; make -j 16 &amp;&amp; make install</span><br><span class="line"><span class="comment"># 4.更新系统动态库链接缓存</span></span><br><span class="line">&gt;&gt; ldconfig</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-g2o"><a href="#3-g2o" class="headerlink" title="3.g2o"></a>3.g2o</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.安装依赖</span></span><br><span class="line">&gt;&gt; apt install -y libatlas-base-dev libsuitesparse-dev</span><br><span class="line"><span class="comment"># 2.下载源码</span></span><br><span class="line">&gt;&gt; git <span class="built_in">clone</span> https://github.com/RainerKuemmerle/g2o.git &amp;&amp; <span class="built_in">cd</span> g2o &amp;&amp; git checkout 20230223_git</span><br><span class="line"><span class="comment"># 3.编译安装</span></span><br><span class="line">&gt;&gt; <span class="built_in">mkdir</span> build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">&gt;&gt; cmake \</span><br><span class="line">    -DCMAKE_BUILD_TYPE=Release \</span><br><span class="line">    -DCMAKE_INSTALL_PREFIX=/usr/local \</span><br><span class="line">    -DBUILD_SHARED_LIBS=ON \</span><br><span class="line">    -DBUILD_UNITTESTS=OFF \</span><br><span class="line">    -DG2O_USE_CHOLMOD=OFF \</span><br><span class="line">    -DG2O_USE_CSPARSE=ON \</span><br><span class="line">    -DG2O_USE_OPENGL=OFF \</span><br><span class="line">    -DG2O_USE_OPENMP=OFF \</span><br><span class="line">    -DG2O_BUILD_APPS=OFF \</span><br><span class="line">    -DG2O_BUILD_EXAMPLES=OFF \</span><br><span class="line">    -DG2O_BUILD_LINKED_APPS=OFF \</span><br><span class="line">    ..</span><br><span class="line">&gt;&gt; make -j 16 &amp;&amp; make install</span><br><span class="line"><span class="comment"># 4.更新系统动态库链接缓存</span></span><br><span class="line">&gt;&gt; ldconfig</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-cloc"><a href="#4-cloc" class="headerlink" title="4.cloc"></a>4.cloc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.工具安装</span></span><br><span class="line">&gt;&gt; apt -y install cloc</span><br><span class="line"><span class="comment"># 2.使用方法: cloc path/to/project</span></span><br><span class="line">&gt;&gt;  cloc ./</span><br><span class="line">     346 text files.</span><br><span class="line">     322 unique files.</span><br><span class="line">     112 files ignored.</span><br><span class="line"></span><br><span class="line">github.com/AlDanial/cloc v 1.82  T=0.31 s (772.8 files/s, 376372.4 lines/s)</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">Language                     files          blank        comment           code</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">C++                             83           3507           2956          85001</span><br><span class="line">C/C++ Header                   105           2775           4334           9713</span><br><span class="line">CMake                           34            293            437           1624</span><br><span class="line">make                             4            820            379           1543</span><br><span class="line">C                                2            121             75            539</span><br><span class="line">Bourne Shell                     5            153            402            148</span><br><span class="line">Markdown                         2             37              0             73</span><br><span class="line">XML                              1              0              0             13</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">SUM:                           236           7706           8583          98654</span><br><span class="line">-------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-hiredis"><a href="#5-hiredis" class="headerlink" title="5.hiredis"></a>5.hiredis</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.下载源码</span></span><br><span class="line">&gt;&gt; git <span class="built_in">clone</span> https://github.com/redis/hiredis.git</span><br><span class="line"><span class="comment"># 2.编译安装</span></span><br><span class="line">&gt;&gt; <span class="built_in">cd</span> hiredis &amp;&amp; make -j 16 &amp;&amp; make install</span><br><span class="line"><span class="comment"># 3.更新系统动态库链接缓存</span></span><br><span class="line">&gt;&gt; ldconfig</span><br><span class="line"><span class="comment"># 4.版本号验证</span></span><br><span class="line">&gt;&gt; pkg-config --modversion hiredis</span><br><span class="line">1.3.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-redis"><a href="#6-redis" class="headerlink" title="6.redis"></a>6.redis</h2><h3 id="6-1-redis安装"><a href="#6-1-redis安装" class="headerlink" title="6.1 redis安装"></a>6.1 redis安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.安装依赖库</span></span><br><span class="line">&gt;&gt; apt install -y tcl tcl-dev</span><br><span class="line"><span class="comment"># 2.下载源码</span></span><br><span class="line">&gt;&gt; wget https://download.redis.io/releases/redis-7.2.4.tar.gz</span><br><span class="line"><span class="comment"># 3.解压源码</span></span><br><span class="line">&gt;&gt; tar -zxvf redis-7.2.4.tar.gz &amp;&amp; <span class="built_in">mv</span> redis-7.2.4 redis</span><br><span class="line"><span class="comment"># 4.编译及测试</span></span><br><span class="line">&gt;&gt; <span class="built_in">cd</span> redis &amp;&amp; make -j 16 &amp;&amp; make <span class="built_in">test</span></span><br><span class="line"><span class="comment"># 5.安装到系统路径</span></span><br><span class="line">&gt;&gt; make PREFIX=/usr/local/redis install</span><br><span class="line"><span class="comment"># 6.添加系统环境变量</span></span><br><span class="line">&gt;&gt; vim ~/.zshrc</span><br><span class="line"><span class="built_in">export</span> REDIS=<span class="string">&quot;/usr/local/redis/bin&quot;</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$REDIS</span></span><br><span class="line">&gt;&gt; <span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-redis配置"><a href="#6-2-redis配置" class="headerlink" title="6.2 redis配置"></a>6.2 redis配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.创建配置文件目录</span></span><br><span class="line">&gt;&gt; <span class="built_in">mkdir</span> -p /usr/local/redis/conf</span><br><span class="line">&gt;&gt; <span class="built_in">mkdir</span> -p /usr/local/redis/data</span><br><span class="line">&gt;&gt; <span class="built_in">mkdir</span> -p /usr/local/redis/log</span><br><span class="line"><span class="comment"># 2.复制并修改配置</span></span><br><span class="line">&gt;&gt; <span class="built_in">cp</span> /root/software/redis/redis.conf /usr/local/redis/conf/</span><br><span class="line"><span class="comment"># 3.修改配置文件，修改内容见后面的表</span></span><br><span class="line">&gt;&gt; vim /usr/local/redis/conf/redis.conf</span><br><span class="line"><span class="comment"># 4.启动服务</span></span><br><span class="line">&gt;&gt; redis-server /usr/local/redis/conf/redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;找到以下配置行，修改为对应值（注释掉的去掉 <code>#</code>，值不对的修改）：</p>
+<table>
+<thead>
+<tr>
+<th align="center">配置项</th>
+<th align="center">修改后的值</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>daemonize</code></td>
+<td align="center"><code>yes</code></td>
+<td align="center">后台运行 Redis（否则终端关闭后 Redis 停止）</td>
+</tr>
+<tr>
+<td align="center"><code>bind</code></td>
+<td align="center"><code>0.0.0.0</code></td>
+<td align="center">允许所有 IP 访问（测试 &#x2F; 单机场景，生产需改为具体内网 IP）</td>
+</tr>
+<tr>
+<td align="center"><code>protected-mode</code></td>
+<td align="center"><code>no</code></td>
+<td align="center">关闭保护模式（否则仅本地可访问）</td>
+</tr>
+<tr>
+<td align="center"><code>port</code></td>
+<td align="center"><code>6379</code></td>
+<td align="center">Redis 端口（默认 6379，保持不变即可）</td>
+</tr>
+<tr>
+<td align="center"><code>dir</code></td>
+<td align="center"><code>/usr/local/redis/data</code></td>
+<td align="center">Redis 数据存储目录（对应步骤 5.1 创建的目录）</td>
+</tr>
+<tr>
+<td align="center"><code>logfile</code></td>
+<td align="center"><code>/usr/local/redis/log/redis.log</code></td>
+<td align="center">日志文件路径（方便排查问题）</td>
+</tr>
+<tr>
+<td align="center"><code>requirepass</code></td>
+<td align="center"><code>your_password</code></td>
+<td align="center">（可选）设置 Redis 密码（生产环境必加，测试可省略）</td>
+</tr>
+</tbody></table>
+<p>修改完成后，按 <code>Ctrl+O</code> 保存，<code>Ctrl+X</code> 退出 nano。</p>
+<h3 id="6-3-redis使用"><a href="#6-3-redis使用" class="headerlink" title="6.3 redis使用"></a>6.3 redis使用</h3><ul>
+<li>（1）验证启动状态</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式一：查看redis进程</span></span><br><span class="line">&gt;&gt; ps -ef | grep redis-server</span><br><span class="line">root      183727  174987  0 16:32 ?        00:00:00 redis-server 0.0.0.0:6379</span><br><span class="line">root      183851  174991  0 16:33 pts/11   00:00:00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn --exclude-dir=.idea --exclude-dir=.tox --exclude-dir=.venv --exclude-dir=venv redis-server</span><br><span class="line"><span class="comment"># 2.客户端连接测试</span></span><br><span class="line">&gt;&gt;  redis-cli</span><br><span class="line">127.0.0.1:6379&gt; PING</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>（2）停止redis</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.未设置密码</span></span><br><span class="line">&gt;&gt; redis-cli shutdown</span><br><span class="line"><span class="comment"># 2.设置了密码</span></span><br><span class="line">&gt;&gt; redis-cli -a &lt;your_password&gt; shutdown</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-4-redis-cluster配置"><a href="#6-4-redis-cluster配置" class="headerlink" title="6.4 redis-cluster配置"></a>6.4 redis-cluster配置</h3><h4 id="6-4-1-主机配置"><a href="#6-4-1-主机配置" class="headerlink" title="6.4.1 主机配置"></a>6.4.1 主机配置</h4><ul>
+<li>(1) 生成基础配置</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.创建文件夹</span></span><br><span class="line">&gt;&gt; <span class="built_in">mkdir</span> redis-cluster &amp;&amp; <span class="built_in">cd</span> redis-cluster</span><br><span class="line"><span class="comment"># 2.拷贝一份配置文件</span></span><br><span class="line">&gt;&gt; <span class="built_in">cp</span> /usr/local/redis/conf/redis.conf ./</span><br><span class="line"><span class="comment"># 3.修改配置</span></span><br><span class="line">&gt;&gt; vim redis.conf</span><br><span class="line"><span class="built_in">dir</span> .</span><br><span class="line"><span class="built_in">bind</span> 0.0.0.0</span><br><span class="line">requirepass 123456</span><br><span class="line">protected-mode no</span><br><span class="line">port 8400</span><br><span class="line">pidfile redis-8400.pid</span><br><span class="line">logfile redis-8400.log</span><br><span class="line">cluster-enabled <span class="built_in">yes</span></span><br><span class="line">cluster-config-file nodes-8400.conf</span><br><span class="line">cluster-node-timeout 5000</span><br><span class="line">appendonly <span class="built_in">yes</span></span><br><span class="line">daemonize <span class="built_in">yes</span></span><br><span class="line">maxmemory 10g</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(2) bash批量生成对应配置</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> port <span class="keyword">in</span> 8400 8401 8402 8403 8404 8405; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">cp</span> redis.conf redis-<span class="variable">$&#123;port&#125;</span>.conf;</span><br><span class="line">  <span class="keyword">if</span> [ <span class="variable">$port</span> -ne 8400 ]; <span class="keyword">then</span></span><br><span class="line">    sed -i <span class="string">&quot;s/8400/<span class="variable">$&#123;port&#125;</span>/g&quot;</span> redis-<span class="variable">$&#123;port&#125;</span>.conf;</span><br><span class="line">  <span class="keyword">fi</span>;</span><br><span class="line">  /usr/local/redis/bin/redis-server redis-<span class="variable">$&#123;port&#125;</span>.conf;</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">/usr/local/redis/bin/redis-cli --cluster create 127.0.0.1:8400 127.0.0.1:8401 127.0.0.1:8402 127.0.0.1:8403 127.0.0.1:8404 127.0.0.1:8405 --cluster-replicas 1 -a 123456</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;执行后：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Can I <span class="built_in">set</span> the above configuration? (<span class="built_in">type</span> <span class="string">&#x27;yes&#x27;</span> to accept): <span class="built_in">yes</span></span><br><span class="line">[OK] All nodes agree about slots configuration.</span><br><span class="line">&gt;&gt;&gt; Check <span class="keyword">for</span> open slots...</span><br><span class="line">&gt;&gt;&gt; Check slots coverage...</span><br><span class="line">[OK] All 16384 slots covered.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(3) 测试一下</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.登录8400节点</span></span><br><span class="line">&gt;&gt; redis-cli -c -h 192.168.89.64 -p 8400 -a <span class="string">&#x27;123456&#x27;</span></span><br><span class="line">192.168.89.64:8400&gt; <span class="built_in">set</span> mirror 123</span><br><span class="line">-&gt; Redirected to slot [15439] located at 127.0.0.1:8402</span><br><span class="line">OK</span><br><span class="line"><span class="comment"># 2.退出连接后，更换一个节点来获取结果</span></span><br><span class="line">127.0.0.1:8402&gt; <span class="built_in">exit</span></span><br><span class="line">&gt;&gt; redis-cli -c -h 192.168.89.64 -p 8401 -a <span class="string">&#x27;123456&#x27;</span></span><br><span class="line">192.168.89.64:8401&gt; get mirror</span><br><span class="line">-&gt; Redirected to slot [15439] located at 127.0.0.1:8402</span><br><span class="line"><span class="string">&quot;123&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(4) 停止服务</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> port <span class="keyword">in</span> 8400 8401 8402 8403 8404 8405; <span class="keyword">do</span></span><br><span class="line">  redis-cli -c -h 192.168.89.64 -p <span class="variable">$port</span> -a <span class="string">&#x27;123456&#x27;</span> shutdown</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">rm</span> *.<span class="built_in">log</span></span><br><span class="line"><span class="built_in">rm</span> *.pid</span><br><span class="line"><span class="built_in">rm</span> nodes-*.conf</span><br><span class="line"><span class="built_in">rm</span> *.rdb</span><br><span class="line"><span class="built_in">rm</span> -rf appendonlydir</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-4-2-docker部署"><a href="#6-4-2-docker部署" class="headerlink" title="6.4.2 docker部署"></a>6.4.2 docker部署</h4><ul>
+<li>(1) 创建配置存放路径</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.创建资源根目录</span></span><br><span class="line">&gt;&gt; <span class="built_in">mkdir</span> redis-cluster &amp;&amp; <span class="built_in">cd</span> redis-cluster &amp;&amp; <span class="built_in">chmod</span> -R 777 ./</span><br><span class="line"><span class="comment"># 2.获取路径</span></span><br><span class="line">&gt;&gt; <span class="built_in">pwd</span></span><br><span class="line">/data/project/jingyu/redis-cluster</span><br><span class="line"><span class="comment"># 3.创建虚拟网卡</span></span><br><span class="line">&gt;&gt; docker network create redis-network</span><br><span class="line"><span class="comment"># 如果需要删除网卡，可以使用如下命令</span></span><br><span class="line">&gt;&gt; docker network <span class="built_in">rm</span> redis-network</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(2) 生成配置文件</li>
+</ul>
+<p>&emsp;创建<code>create.sh</code>文件，并将下面内容拷贝进去，并运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="built_in">chmod</span> +x create.sh &amp;&amp; ./create.sh</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;<code>create.sh</code>文件内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">for port in $(seq 6379 6384); </span><br><span class="line">do </span><br><span class="line">mkdir -p /data/project/jingyu/redis-cluster/redis/node-$&#123;port&#125;/conf</span><br><span class="line">touch /data/project/jingyu/redis-cluster/redis/node-$&#123;port&#125;/conf/redis.conf</span><br><span class="line">cat  &lt;&lt; EOF &gt; /data/project/jingyu/redis-cluster/redis/node-$&#123;port&#125;/conf/redis.conf</span><br><span class="line">port $&#123;port&#125;</span><br><span class="line">requirepass 1234</span><br><span class="line">bind 0.0.0.0</span><br><span class="line">protected-mode no</span><br><span class="line">daemonize no</span><br><span class="line">appendonly yes</span><br><span class="line">cluster-enabled yes </span><br><span class="line">cluster-config-file nodes.conf</span><br><span class="line">cluster-node-timeout 5000</span><br><span class="line">cluster-announce-ip  10.124.132.23</span><br><span class="line">cluster-announce-port $&#123;port&#125;</span><br><span class="line">cluster-announce-bus-port 1$&#123;port&#125;</span><br><span class="line">EOF</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;有两个地方需要注意：<code>cluster-announce-ip</code>需要改成你主机的ip，<code>daemonize</code>需要改为no，否则容器内redis后台启动，docker会认为进程已退出，直接触发容器重启。创建文件目录结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; tree</span><br><span class="line">.</span><br><span class="line">├── create.sh</span><br><span class="line">├── redis</span><br><span class="line">│   ├── node-6379</span><br><span class="line">│   │   ├── conf</span><br><span class="line">│   │   │   └── redis.conf</span><br><span class="line">│   │   └── data</span><br><span class="line">│   │       ├── appendonlydir [error opening <span class="built_in">dir</span>]</span><br><span class="line">│   │       └── nodes.conf</span><br><span class="line">│   ├── node-6380</span><br><span class="line">│   │   ├── conf</span><br><span class="line">│   │   │   └── redis.conf</span><br><span class="line">│   │   └── data</span><br><span class="line">│   │       ├── appendonlydir [error opening <span class="built_in">dir</span>]</span><br><span class="line">│   │       └── nodes.conf</span><br><span class="line">│   ├── node-6381</span><br><span class="line">│   │   ├── conf</span><br><span class="line">│   │   │   └── redis.conf</span><br><span class="line">│   │   └── data</span><br><span class="line">│   │       ├── appendonlydir [error opening <span class="built_in">dir</span>]</span><br><span class="line">│   │       └── nodes.conf</span><br><span class="line">│   ├── node-6382</span><br><span class="line">│   │   ├── conf</span><br><span class="line">│   │   │   └── redis.conf</span><br><span class="line">│   │   └── data</span><br><span class="line">│   │       ├── appendonlydir [error opening <span class="built_in">dir</span>]</span><br><span class="line">│   │       └── nodes.conf</span><br><span class="line">│   ├── node-6383</span><br><span class="line">│   │   ├── conf</span><br><span class="line">│   │   │   └── redis.conf</span><br><span class="line">│   │   └── data</span><br><span class="line">│   │       ├── appendonlydir [error opening <span class="built_in">dir</span>]</span><br><span class="line">│   │       └── nodes.conf</span><br><span class="line">│   └── node-6384</span><br><span class="line">│       ├── conf</span><br><span class="line">│       │   └── redis.conf</span><br><span class="line">│       └── data</span><br><span class="line">│           ├── appendonlydir [error opening <span class="built_in">dir</span>]</span><br><span class="line">│           └── nodes.conf</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(3) 启动对应节点</li>
+</ul>
+<p>&emsp;创建<code>start.sh</code>脚本文件，并运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="built_in">chmod</span> +x start.sh &amp;&amp; ./start.sh</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;<code>start.sh</code>文件内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for port in $(seq 6379 6384); \</span><br><span class="line">do \</span><br><span class="line">   docker run -it -d -p $&#123;port&#125;:$&#123;port&#125; -p 1$&#123;port&#125;:1$&#123;port&#125; \</span><br><span class="line">  --privileged=true -v /data/project/jingyu/redis-cluster/redis/node-$&#123;port&#125;/conf/redis.conf:/usr/local/etc/redis/redis.conf \</span><br><span class="line">  --privileged=true -v /data/project/jingyu/redis-cluster/redis/node-$&#123;port&#125;/data:/data \</span><br><span class="line">  --restart always --name redis-$&#123;port&#125; --net redis-network \</span><br><span class="line">  --sysctl net.core.somaxconn=1024 redis redis-server /usr/local/etc/redis/redis.conf</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;注意挂载路径和你创建的路径保持一致</p>
+<ul>
+<li>(4) 创建集群</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.进入容器</span></span><br><span class="line">&gt;&gt; docker <span class="built_in">exec</span> -it redis-6379 bash</span><br><span class="line"><span class="comment"># 2.创建集群</span></span><br><span class="line">&gt;&gt; redis-cli -a 1234 --cluster create 10.124.132.23:6379 10.124.132.23:6380 10.124.132.23:6381 10.124.132.23:6382 10.124.132.23:6383 10.124.132.23:6384 --cluster-replicas 1</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-4-3-docker多机部署"><a href="#6-4-3-docker多机部署" class="headerlink" title="6.4.3 docker多机部署"></a>6.4.3 docker多机部署</h4><p>&emsp;和前面不同，虚拟网卡仅存在于单台 Docker宿主机内部，不同机器上的容器无法通过该网桥互相通信，这时可以使用宿主机网络<code>Host</code>模式：现在假设需要在两台主机上部署6个节点，每台机器上需要部署3个节点：</p>
+<ul>
+<li>(1) 创建网络配置</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.创建配置存放路径：</span></span><br><span class="line">&gt;&gt; <span class="built_in">mkdir</span> redis-cluster &amp;&amp; <span class="built_in">cd</span> redis-cluster &amp;&amp; <span class="built_in">chmod</span> -R 777 ./</span><br><span class="line"><span class="comment"># 2.获取配置存放根目录，方便后续映射路径</span></span><br><span class="line">&gt;&gt; <span class="built_in">pwd</span></span><br><span class="line">/data/project/jingyu/redis-cluster</span><br><span class="line"><span class="comment"># 3.创建脚本</span></span><br><span class="line">&gt;&gt; vim create.sh &amp;&amp; <span class="built_in">chmod</span> +x create.sh</span><br><span class="line"><span class="comment"># 4.生成配置</span></span><br><span class="line">&gt;&gt; ./create.sh</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;<code>create.sh</code>脚本内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">for port in $(seq 6379 6381); </span><br><span class="line">do </span><br><span class="line">mkdir -p /data/project/jingyu/redis-cluster/redis/node-$&#123;port&#125;/conf</span><br><span class="line">touch /data/project/jingyu/redis-cluster/redis/node-$&#123;port&#125;/conf/redis.conf</span><br><span class="line">cat  &lt;&lt; EOF &gt; /data/project/jingyu/redis-cluster/redis/node-$&#123;port&#125;/conf/redis.conf</span><br><span class="line">port $&#123;port&#125;</span><br><span class="line">requirepass 1234</span><br><span class="line">bind 0.0.0.0</span><br><span class="line">protected-mode no</span><br><span class="line">daemonize no</span><br><span class="line">appendonly yes</span><br><span class="line">cluster-enabled yes </span><br><span class="line">cluster-config-file nodes.conf</span><br><span class="line">cluster-node-timeout 5000</span><br><span class="line">cluster-announce-ip  10.124.132.23</span><br><span class="line">cluster-announce-port $&#123;port&#125;</span><br><span class="line">cluster-announce-bus-port 1$&#123;port&#125;</span><br><span class="line">EOF</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(2) 启动三个节点</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.创建脚本</span></span><br><span class="line">&gt;&gt; vim start.sh &amp;&amp; <span class="built_in">chmod</span> +x start.sh</span><br><span class="line"><span class="comment"># 2.启动节点</span></span><br><span class="line">&gt;&gt; ./start.sh</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;<code>start.sh</code>脚本内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for port in $(seq 6379 6381); \</span><br><span class="line">do \</span><br><span class="line">   docker run -it -d \</span><br><span class="line">  --privileged=true -v /data/project/jingyu/redis-cluster/redis/node-$&#123;port&#125;/conf/redis.conf:/usr/local/etc/redis/redis.conf \</span><br><span class="line">  --privileged=true -v /data/project/jingyu/redis-cluster/redis/node-$&#123;port&#125;/data:/data \</span><br><span class="line">  --restart always --name redis-$&#123;port&#125; --net host \</span><br><span class="line">  redis redis-server /usr/local/etc/redis/redis.conf</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;由于使用host模式，这里无需做port映射。</p>
+<ul>
+<li>(3) 同样的方式在另外一台服务器上启动三个节点</li>
+<li>(4) 创建集群</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.进入容器</span></span><br><span class="line">&gt;&gt; docker <span class="built_in">exec</span> -it redis-6379 bash</span><br><span class="line"><span class="comment"># 2.创建集群</span></span><br><span class="line">&gt;&gt; redis-cli -a 1234 --cluster create 10.124.132.23:6379 10.124.132.23:6380 10.124.132.23:6381 10.124.132.16:6379 10.124.132.16:6380 10.124.132.16:6381 --cluster-replicas 1</span><br><span class="line">Warning: Using a password with <span class="string">&#x27;-a&#x27;</span> or <span class="string">&#x27;-u&#x27;</span> option on the <span class="built_in">command</span> line interface may not be safe.</span><br><span class="line">&gt;&gt;&gt; Performing <span class="built_in">hash</span> slots allocation on 6 nodes...</span><br><span class="line">Master[0] -&gt; Slots 0 - 5460</span><br><span class="line">Master[1] -&gt; Slots 5461 - 10922</span><br><span class="line">Master[2] -&gt; Slots 10923 - 16383</span><br><span class="line">Adding replica 10.124.132.16:6381 to 10.124.132.23:6379</span><br><span class="line">Adding replica 10.124.132.23:6381 to 10.124.132.16:6379</span><br><span class="line">Adding replica 10.124.132.16:6380 to 10.124.132.23:6380</span><br><span class="line">M: a79eeb4564c564b93043e6a2b3187f931bf1f11f 10.124.132.23:6379</span><br><span class="line">   slots:[0-5460] (5461 slots) master</span><br><span class="line">M: 32945c041c174632c5d448143fc440da91a67e5a 10.124.132.23:6380</span><br><span class="line">   slots:[10923-16383] (5461 slots) master</span><br><span class="line">S: 345e489c0aa0e84644ffb853b0bb6381a92872c4 10.124.132.23:6381</span><br><span class="line">   replicates 6cbf25f8f3de92b6a135bc0caf2daf5192858979</span><br><span class="line">M: 6cbf25f8f3de92b6a135bc0caf2daf5192858979 10.124.132.16:6379</span><br><span class="line">   slots:[5461-10922] (5462 slots) master</span><br><span class="line">S: 1c834fb401e8a1fe4fd5273731224088c915e9c7 10.124.132.16:6380</span><br><span class="line">   replicates 32945c041c174632c5d448143fc440da91a67e5a</span><br><span class="line">S: 1c295466bf89a355b6f9455600e04e15ea9a651e 10.124.132.16:6381</span><br><span class="line">   replicates a79eeb4564c564b93043e6a2b3187f931bf1f11f</span><br><span class="line">Can I <span class="built_in">set</span> the above configuration? (<span class="built_in">type</span> <span class="string">&#x27;yes&#x27;</span> to accept): <span class="built_in">yes</span></span><br><span class="line">&gt;&gt;&gt; Nodes configuration updated</span><br><span class="line">&gt;&gt;&gt; Assign a different config epoch to each node</span><br><span class="line">&gt;&gt;&gt; Sending CLUSTER MEET messages to <span class="built_in">join</span> the cluster</span><br><span class="line">Waiting <span class="keyword">for</span> the cluster to <span class="built_in">join</span></span><br><span class="line">.</span><br><span class="line">&gt;&gt;&gt; Performing Cluster Check (using node 10.124.132.23:6379)</span><br><span class="line">M: a79eeb4564c564b93043e6a2b3187f931bf1f11f 10.124.132.23:6379</span><br><span class="line">   slots:[0-5460] (5461 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">S: 1c834fb401e8a1fe4fd5273731224088c915e9c7 10.124.132.16:6380</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 32945c041c174632c5d448143fc440da91a67e5a</span><br><span class="line">M: 6cbf25f8f3de92b6a135bc0caf2daf5192858979 10.124.132.16:6379</span><br><span class="line">   slots:[5461-10922] (5462 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">S: 1c295466bf89a355b6f9455600e04e15ea9a651e 10.124.132.16:6381</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates a79eeb4564c564b93043e6a2b3187f931bf1f11f</span><br><span class="line">M: 32945c041c174632c5d448143fc440da91a67e5a 10.124.132.23:6380</span><br><span class="line">   slots:[10923-16383] (5461 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">S: 345e489c0aa0e84644ffb853b0bb6381a92872c4 10.124.132.23:6381</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 6cbf25f8f3de92b6a135bc0caf2daf5192858979</span><br><span class="line">[OK] All nodes agree about slots configuration.</span><br><span class="line">&gt;&gt;&gt; Check <span class="keyword">for</span> open slots...</span><br><span class="line">&gt;&gt;&gt; Check slots coverage...</span><br><span class="line">[OK] All 16384 slots covered.</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;这样就成功了。</p>
+<ul>
+<li>(5) 验证集群</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; redis-cli -c -h 10.124.132.23 -p 6379 -a 1234</span><br><span class="line">Warning: Using a password with &#x27;-a&#x27; or &#x27;-u&#x27; option on the command line interface may not be safe.</span><br><span class="line">10.124.132.23:6379&gt; set mirror cjy</span><br><span class="line">-&gt; Redirected to slot [15439] located at 10.124.132.23:6380</span><br><span class="line">OK</span><br><span class="line">10.124.132.23:6379&gt; get mirror</span><br><span class="line">-&gt; Redirected to slot [15439] located at 10.124.132.23:6380</span><br><span class="line">&quot;cjy&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-mysql"><a href="#7-mysql" class="headerlink" title="7.mysql"></a>7.mysql</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.拉取镜像</span></span><br><span class="line">&gt;&gt; docker pull mysql:8.0</span><br><span class="line"><span class="comment"># 2.挂载数据卷</span></span><br><span class="line">&gt;&gt; docker volume create mysql-data</span><br><span class="line"><span class="comment"># 3.启动容器</span></span><br><span class="line">&gt;&gt; docker run -d \</span><br><span class="line">  --name mysql \</span><br><span class="line">  -p 3306:3306 \</span><br><span class="line">  -v mysql-data:/var/lib/mysql \</span><br><span class="line">  -e MYSQL_ROOT_PASSWORD=123456 \</span><br><span class="line">  -e MYSQL_ROOT_HOST=% \</span><br><span class="line">  -e TZ=Asia/Shanghai \</span><br><span class="line">  --restart=always \</span><br><span class="line">  mysql:8.0 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci</span><br><span class="line"><span class="comment"># 4.进入mysql</span></span><br><span class="line">&gt;&gt; docker <span class="built_in">exec</span> -it mysql bash</span><br><span class="line"><span class="comment"># 容器内登录MySQL，输入之前设置的密码</span></span><br><span class="line">&gt;&gt; mysql -uroot -p</span><br><span class="line"><span class="comment"># 5.创建一个表</span></span><br><span class="line">mysql&gt; CREATE DATABASE IF NOT EXISTS dev_db </span><br><span class="line">CHARACTER SET utf8mb4 </span><br><span class="line">COLLATE utf8mb4_unicode_ci;</span><br><span class="line">Query OK, 1 row affected (0.03 sec)</span><br><span class="line"><span class="comment"># 6.查看所有数据库</span></span><br><span class="line">mysql&gt; SHOW DATABASES;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| dev_db             |</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">| webdb              |</span><br><span class="line">+--------------------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"><span class="comment"># 7.指定数据库</span></span><br><span class="line">mysql&gt; USE dev_db;</span><br><span class="line"><span class="comment"># 8.创建表格</span></span><br><span class="line">mysql&gt; DROP TABLE IF EXISTS `user`;</span><br><span class="line">mysql&gt; CREATE TABLE `user` (</span><br><span class="line">  `<span class="built_in">id</span>` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT <span class="string">&#x27;用户唯一主键，自增&#x27;</span>,</span><br><span class="line">  `username` VARCHAR(64) NOT NULL COMMENT <span class="string">&#x27;用户名，唯一&#x27;</span>,</span><br><span class="line">  `password` VARCHAR(128) NOT NULL COMMENT <span class="string">&#x27;crypt加密后的密码（SHA-512加密后约94位，留余量）&#x27;</span>,</span><br><span class="line">  `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT <span class="string">&#x27;创建时间，默认当前时间&#x27;</span>,</span><br><span class="line">  `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT <span class="string">&#x27;更新时间，自动更新&#x27;</span>,</span><br><span class="line">  `is_deleted` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT <span class="string">&#x27;逻辑删除：0-未删，1-已删&#x27;</span>,</span><br><span class="line">  PRIMARY KEY (`<span class="built_in">id</span>`) USING BTREE,</span><br><span class="line">  UNIQUE KEY `uk_username` (`username`) USING BTREE COMMENT <span class="string">&#x27;用户名唯一索引，防止重复注册&#x27;</span>,</span><br><span class="line">  KEY `idx_create_time` (`create_time`) USING BTREE COMMENT <span class="string">&#x27;创建时间索引，方便按时间查询&#x27;</span></span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT=<span class="string">&#x27;用户信息表&#x27;</span>; </span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+              <a href="/tags/OpenCV/" rel="tag"># OpenCV</a>
+              <a href="/tags/Pangolin/" rel="tag"># Pangolin</a>
+              <a href="/tags/G2O/" rel="tag"># G2O</a>
+              <a href="/tags/cloc/" rel="tag"># cloc</a>
+              <a href="/tags/hiredis/" rel="tag"># hiredis</a>
+              <a href="/tags/redis/" rel="tag"># redis</a>
+              <a href="/tags/mysql/" rel="tag"># mysql</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/01/26/CMake%E5%B8%B8%E8%A7%81%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="CMake常见语法学习笔记">
+                  <i class="fa fa-angle-left"></i> CMake常见语法学习笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/01/27/Workflow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%88%9D%E8%AF%86/" rel="next" title="Workflow学习笔记（一）：初识">
+                  Workflow学习笔记（一）：初识 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">MirrorYuChen</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
