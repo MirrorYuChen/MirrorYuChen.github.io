@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mirroryuchen.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="ROS版本OV2Slam运行笔记，包括环境搭建、编译、运行、调试、参数配置、常见问题等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS版本OV2Slam运行笔记">
+<meta property="og:url" content="http://mirroryuchen.github.io/2026/10/11/ROS%E7%89%88%E6%9C%ACOV2Slam%E8%BF%90%E8%A1%8C%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="小小宇宙镜">
+<meta property="og:description" content="ROS版本OV2Slam运行笔记，包括环境搭建、编译、运行、调试、参数配置、常见问题等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-10-11T12:35:04.000Z">
+<meta property="article:modified_time" content="2026-10-11T12:36:37.628Z">
+<meta property="article:author" content="MirrorYuChen">
+<meta property="article:tag" content="ROS">
+<meta property="article:tag" content="OV2Slam">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://mirroryuchen.github.io/2026/10/11/ROS%E7%89%88%E6%9C%ACOV2Slam%E8%BF%90%E8%A1%8C%E7%AC%94%E8%AE%B0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://mirroryuchen.github.io/2026/10/11/ROS%E7%89%88%E6%9C%ACOV2Slam%E8%BF%90%E8%A1%8C%E7%AC%94%E8%AE%B0/","path":"2026/10/11/ROS版本OV2Slam运行笔记/","title":"ROS版本OV2Slam运行笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ROS版本OV2Slam运行笔记 | 小小宇宙镜</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小小宇宙镜</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">"怕什么真理无穷，进一寸有一寸的欢喜。"——胡适谈求知</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ros%E7%89%88ov2slam%E8%BF%90%E8%A1%8C%E7%AC%94%E8%AE%B0"><span class="nav-text">ros版ov2slam运行笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-text">0.环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%BF%90%E8%A1%8Croscore"><span class="nav-text">1.运行roscore</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%90%E8%A1%8Cov2slam%E8%8A%82%E7%82%B9"><span class="nav-text">2.运行ov2slam节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%BF%90%E8%A1%8Crosplay%E8%8A%82%E7%82%B9%E5%96%82%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-text">3.运行rosplay节点喂入数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8F%AF%E8%A7%86%E5%8C%96rviz"><span class="nav-text">4.可视化rviz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MirrorYuChen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/MirrorYuChen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;MirrorYuChen" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2458006366@qq.com" title="E-Mail → 2458006366@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://mirroryuchen.github.io/2026/10/11/ROS%E7%89%88%E6%9C%ACOV2Slam%E8%BF%90%E8%A1%8C%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MirrorYuChen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小宇宙镜">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ROS版本OV2Slam运行笔记 | 小小宇宙镜">
+      <meta itemprop="description" content="ROS版本OV2Slam运行笔记，包括环境搭建、编译、运行、调试、参数配置、常见问题等。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ROS版本OV2Slam运行笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-10-11 20:35:04 / 修改时间：20:36:37" itemprop="dateCreated datePublished" datetime="2026-10-11T20:35:04+08:00">2026-10-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/slam/" itemprop="url" rel="index"><span itemprop="name">slam</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">ROS版本OV2Slam运行笔记，包括环境搭建、编译、运行、调试、参数配置、常见问题等。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="ros版ov2slam运行笔记"><a href="#ros版ov2slam运行笔记" class="headerlink" title="ros版ov2slam运行笔记"></a>ros版ov2slam运行笔记</h1><h2 id="0-环境搭建"><a href="#0-环境搭建" class="headerlink" title="0.环境搭建"></a>0.环境搭建</h2><ul>
+<li>(1) 创建Dockerfile文件，内容如下：</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 Ubuntu 20.04 ROS </span></span><br><span class="line"><span class="keyword">FROM</span> docker.<span class="number">1</span>ms.run/osrf/ros:noetic-desktop-full</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置时区和更新镜像源</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update &amp;&amp; apt-get install -y tzdata \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">ln</span> -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; dpkg-reconfigure --frontend noninteractive tzdata</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装一些基础库</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update &amp;&amp; apt-get install -y \</span></span><br><span class="line"><span class="language-bash">    git \</span></span><br><span class="line"><span class="language-bash">    vim \</span></span><br><span class="line"><span class="language-bash">    cmake \</span></span><br><span class="line"><span class="language-bash">    wget \</span></span><br><span class="line"><span class="language-bash">    zip \ </span></span><br><span class="line">    libgflags-dev \</span><br><span class="line">    libgoogle-glog-dev \</span><br><span class="line">    libssl-dev\</span><br><span class="line">    build-essential \</span><br><span class="line">    libgl1-mesa-dev \</span><br><span class="line">    libglew-dev \</span><br><span class="line">    libepoxy-dev \</span><br><span class="line">    libgtk2.<span class="number">0</span>-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev \</span><br><span class="line">    libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-<span class="number">22</span>-dev libopenexr-dev \</span><br><span class="line">    libgstreamer-plugins-base1.<span class="number">0</span>-dev libgstreamer1.<span class="number">0</span>-dev \ </span><br><span class="line">    libboost-all-dev \</span><br><span class="line">    &amp;&amp; apt-get clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建目录 WORKDIR/code 并在目录下面git clone 代码</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">mkdir</span> -p /home/catkin_ws/src</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">cd</span> /home/catkin_ws/src &amp;&amp; git <span class="built_in">clone</span> https://github.com/ov2slam/ov2slam.git</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">cd</span> /home/ &amp;&amp; git <span class="built_in">clone</span> https://github.com/laurentkneip/opengv &amp;&amp; <span class="built_in">cd</span> opengv &amp;&amp; <span class="built_in">mkdir</span> build &amp;&amp; <span class="built_in">cd</span> build &amp;&amp; cmake .. &amp;&amp; make -j$(<span class="built_in">nproc</span>) &amp;&amp; make install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Eigen3 &gt; 3.1.0</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update &amp;&amp; apt-get install -y libeigen3-dev</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># OpenCV 3.4.0</span></span><br><span class="line"><span class="comment"># 下载 OpenCV 3.4.16</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">cd</span> /home/ &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    git <span class="built_in">clone</span> https://github.com/opencv/opencv.git -b 3.4 --depth 1 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载 opencv_contrib 3.4.16</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">cd</span> /home/ &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    git <span class="built_in">clone</span> https://github.com/opencv/opencv_contrib.git -b 3.4 --depth 1 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">cd</span> /home/opencv &amp;&amp; <span class="built_in">mkdir</span> build &amp;&amp; <span class="built_in">cd</span> build &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    cmake -D CMAKE_BUILD_TYPE=Release \</span></span><br><span class="line"><span class="language-bash">          -D CMAKE_INSTALL_PREFIX=/usr/local \</span></span><br><span class="line"><span class="language-bash">          -D OPENCV_EXTRA_MODULES_PATH=/home/opencv_contrib/modules \</span></span><br><span class="line"><span class="language-bash">          -D BUILD_EXAMPLES=ON \</span></span><br><span class="line"><span class="language-bash">          -D BUILD_opencv_world=ON \</span></span><br><span class="line"><span class="language-bash">          -D WITH_CUDA=OFF \</span></span><br><span class="line"><span class="language-bash">          -D WITH_GTK=ON \</span></span><br><span class="line"><span class="language-bash">          -D WITH_OPENGL=ON \</span></span><br><span class="line"><span class="language-bash">          -D OPENCV_ENABLE_NONFREE=ON .. &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    make -j$(<span class="built_in">nproc</span>) &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    make install</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> ldconfig</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">cd</span> /home/catkin_ws/src/ov2slam &amp;&amp; ./build_thirdparty.sh</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(2) 构造ov2slam镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; docker build -t ov2slam:latest .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(3) 启动容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; docker run -itd --name ov2slam ov2slam:latest</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-运行roscore"><a href="#1-运行roscore" class="headerlink" title="1.运行roscore"></a>1.运行roscore</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.激活ros环境</span></span><br><span class="line">&gt;&gt; <span class="built_in">source</span> /opt/ros/noetic/setup.bash</span><br><span class="line"><span class="comment"># 2.运行roscore节点</span></span><br><span class="line">&gt;&gt; roscore</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-运行ov2slam节点"><a href="#2-运行ov2slam节点" class="headerlink" title="2.运行ov2slam节点"></a>2.运行ov2slam节点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.激活ros环境</span></span><br><span class="line">&gt;&gt; <span class="built_in">source</span> /opt/ros/noetic/setup.bash</span><br><span class="line"><span class="comment"># 2.激活当前工作空间环境</span></span><br><span class="line">&gt;&gt; <span class="built_in">source</span> /home/catkin_ws/devel/setup.bash</span><br><span class="line"><span class="comment"># 3.运行roscore节点</span></span><br><span class="line">&gt;&gt; <span class="built_in">cd</span> /home/catkin_ws/src/ov2slam</span><br><span class="line">&gt;&gt; rosrun ov2slam ov2slam_node ./parameters_files/accurate/euroc/euroc_mono.yaml</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-运行rosplay节点喂入数据"><a href="#3-运行rosplay节点喂入数据" class="headerlink" title="3.运行rosplay节点喂入数据"></a>3.运行rosplay节点喂入数据</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.激活ros环境</span></span><br><span class="line">&gt;&gt; <span class="built_in">source</span> /opt/ros/noetic/setup.bash</span><br><span class="line"><span class="comment"># 2.把bag放到容器内，执行播放，**话题重映射**！</span></span><br><span class="line">rosbag play V1_01_easy.bag /cam0/image_raw:=/camera/image_raw</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>/cam0/image_raw</code>：EuRoC bag 原始图像话题</li>
+<li><code>/camera/image_raw</code>：OV2SLAM 节点订阅的话题</li>
+</ul>
+<h2 id="4-可视化rviz"><a href="#4-可视化rviz" class="headerlink" title="4.可视化rviz"></a>4.可视化rviz</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.激活ros环境</span></span><br><span class="line">&gt;&gt; <span class="built_in">source</span> /opt/ros/noetic/setup.bash</span><br><span class="line"><span class="comment"># 2.运行rviz</span></span><br><span class="line">&gt;&gt; rviz</span><br></pre></td></tr></table></figure>
+
+<p>rviz中添加下面话题</p>
+<ul>
+<li>Image：topic <code>/ov2slam/image</code>（带特征点的图像）</li>
+<li>Pose：topic <code>/ov2slam/camera_pose</code>（相机位姿）</li>
+<li>Marker：地图 &#x2F; 特征点可视化</li>
+</ul>
+<p>轨迹保存：OV2SLAM 会自动把轨迹写入文件，路径在 yaml 配置里 <code>save_traj: true</code></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>[1] <a target="_blank" rel="noopener" href="https://github.com/ov2slam/ov2slam">ov2slam</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ROS/" rel="tag"># ROS</a>
+              <a href="/tags/OV2Slam/" rel="tag"># OV2Slam</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/07/huggingface%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="huggingface模型下载学习笔记">
+                  <i class="fa fa-angle-left"></i> huggingface模型下载学习笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">MirrorYuChen</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
